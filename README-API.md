@@ -35,6 +35,7 @@ curl --location 'http://localhost:8080/auth/register' \
 ```
 
 # 3. Register Doctor
+
 **POST**
 
 ```bash
@@ -50,6 +51,7 @@ curl --location 'http://localhost:8080/doctor' \
 ```
 
 *Result*
+
 ```json
 {
     "id": 13,
@@ -88,12 +90,11 @@ curl --location 'http://localhost:8080/doctor/show/13'
 ```shell
 curl --location 'http://localhost:8080/schedules' \
 --header 'Content-Type: application/json' \
---header 'Cookie: JSESSIONID=E845980308D6A810927092C78AC4A036' \
 --data '{
 "doctorId": 4,
-"dayOfWeek": "MONDAY",
-"startTime": "09:00",
-"endTime": "12:00"
+"dayOfWeek": "THURSDAY",
+"startTime": "13:00",
+"endTime": "17:00"
 }'
 ```
 
