@@ -1,4 +1,6 @@
-# Register User
+# 1. Register User
+
+**POST**
 
 ```bash
 curl --location 'http://localhost:8080/auth/register' \
@@ -11,8 +13,9 @@ curl --location 'http://localhost:8080/auth/register' \
 }'
 ```
 
-# Register Patient
+# 2. Register Patient
 
+**POST**
 ```bash
 curl --location 'http://localhost:8080/auth/register' \
 --header 'Content-Type: application/json' \
@@ -24,7 +27,15 @@ curl --location 'http://localhost:8080/auth/register' \
 }'
 ```
 
-# Register Doctor
+*Result*
+```json
+{
+"message": "Registered successfully"
+}
+```
+
+# 3. Register Doctor
+**POST**
 
 ```bash
 curl --location 'http://localhost:8080/doctor' \
@@ -52,7 +63,8 @@ curl --location 'http://localhost:8080/doctor' \
 ```
 
 
-# Get Doctor By Id
+# 4. Get Doctor By Id
+**GET**
 
 ```shell
 curl --location 'http://localhost:8080/doctor/show/13'
@@ -71,7 +83,8 @@ curl --location 'http://localhost:8080/doctor/show/13'
 }
 ```
 
-# Set Doctor Schedule
+# 5. Set Doctor Schedule
+**POST**
 ```shell
 curl --location 'http://localhost:8080/schedules' \
 --header 'Content-Type: application/json' \
@@ -111,7 +124,8 @@ curl --location 'http://localhost:8080/schedules' \
 ```
 
 
-# Get Doctor Schedule
+# 6. Get Doctor Schedule 
+**GET**
 
 ```shell
 curl --location 'http://localhost:8080/schedules/doctor/4' \
@@ -157,35 +171,138 @@ curl --location 'http://localhost:8080/schedules/doctor/4' \
 ```
 
 
-# Delete Doctor Schedule
+# 7. Delete Doctor Schedule 
+
+**DELETE**
+
 ```shell
 curl --location --request DELETE 'http://localhost:8080/schedules/delete?doctorId=4&scheduleId=11' 
 
 ```
 
-*Result 1*
+*Result 1:*
 ```json
 {
 "message": "Schedule deleted successfully"
 }
 ```
 
-*Result 2*
+*Result 2:*
 ```
 Schedule not found for this doctor
 ```
 
-# Get Appointment Slot in Selected Date
+
+
+# 8. Generate Appointment Slot 
+
+**POST**
+
+```shell
+curl --location 'http://localhost:8080/slots/generate?doctorId=4&date=2025-06-20' \
+--header 'Content-Type: application/json' \
+--data '{
+  "doctorId": 1,
+  "date": "2025-06-15"
+}'
+```
+
+*Result:*
+
+```json
+[
+    {
+        "id": 22,
+        "doctorId": 4,
+        "startTime": "2025-06-20T09:00:00",
+        "startTime_DayOfWeek": "FRIDAY",
+        "endTime": "2025-06-20T09:15:00",
+        "endTime_DayOfWeek": "FRIDAY",
+        "booked": false
+    },
+    {
+        "id": 23,
+        "doctorId": 4,
+        "startTime": "2025-06-20T09:20:00",
+        "startTime_DayOfWeek": "FRIDAY",
+        "endTime": "2025-06-20T09:35:00",
+        "endTime_DayOfWeek": "FRIDAY",
+        "booked": false
+    },
+    {
+        "id": 24,
+        "doctorId": 4,
+        "startTime": "2025-06-20T09:40:00",
+        "startTime_DayOfWeek": "FRIDAY",
+        "endTime": "2025-06-20T09:55:00",
+        "endTime_DayOfWeek": "FRIDAY",
+        "booked": false
+    },
+    {
+        "id": 25,
+        "doctorId": 4,
+        "startTime": "2025-06-20T10:00:00",
+        "startTime_DayOfWeek": "FRIDAY",
+        "endTime": "2025-06-20T10:15:00",
+        "endTime_DayOfWeek": "FRIDAY",
+        "booked": false
+    },
+    {
+        "id": 26,
+        "doctorId": 4,
+        "startTime": "2025-06-20T10:20:00",
+        "startTime_DayOfWeek": "FRIDAY",
+        "endTime": "2025-06-20T10:35:00",
+        "endTime_DayOfWeek": "FRIDAY",
+        "booked": false
+    },
+    {
+        "id": 27,
+        "doctorId": 4,
+        "startTime": "2025-06-20T10:40:00",
+        "startTime_DayOfWeek": "FRIDAY",
+        "endTime": "2025-06-20T10:55:00",
+        "endTime_DayOfWeek": "FRIDAY",
+        "booked": false
+    },
+    {
+        "id": 28,
+        "doctorId": 4,
+        "startTime": "2025-06-20T11:00:00",
+        "startTime_DayOfWeek": "FRIDAY",
+        "endTime": "2025-06-20T11:15:00",
+        "endTime_DayOfWeek": "FRIDAY",
+        "booked": false
+    },
+    {
+        "id": 29,
+        "doctorId": 4,
+        "startTime": "2025-06-20T11:20:00",
+        "startTime_DayOfWeek": "FRIDAY",
+        "endTime": "2025-06-20T11:35:00",
+        "endTime_DayOfWeek": "FRIDAY",
+        "booked": false
+    },
+    {
+        "id": 30,
+        "doctorId": 4,
+        "startTime": "2025-06-20T11:40:00",
+        "startTime_DayOfWeek": "FRIDAY",
+        "endTime": "2025-06-20T11:55:00",
+        "endTime_DayOfWeek": "FRIDAY",
+        "booked": false
+    }
+]
+```
+
+
+# 9. Get Doctor Appointment Slot in Selected Date 
+
+**GET**
 
 ```shell
 curl --location --request GET 'http://localhost:8080/slots/show?doctorId=4&date=2025-06-20' \
---header 'Content-Type: application/json' \
---data-raw '{
-  "name": "Dr. POP",
-  "specialty": "อยุกรรม",
-  "phone": "081-xxx-xxxx",
-  "email": "dr-pop-vnurser-1@gmail.com"
-}'
+--header 'Content-Type: application/json'
 ```
 
 ```json
@@ -285,273 +402,21 @@ curl --location --request GET 'http://localhost:8080/slots/show?doctorId=4&date=
 
 
 
+# 10. Make Appointment
 
-# Check Available Slot by Date
-
-```shell
-curl --location 'http://localhost:8080/slots/show?doctorId=4&date=2025-06-20'
-```
-
-*Result*
-```json
-[
-    {
-        "id": 458,
-        "startTime": "2025-06-20T09:00:00",
-        "startTime_DayOfWeek": "FRIDAY",
-        "endTime": "2025-06-20T09:15:00",
-        "endTime_DayOfWeek": "FRIDAY",
-        "doctorId": 4,
-        "booked": false,
-        "available": true
-    },
-    {
-        "id": 459,
-        "startTime": "2025-06-20T09:20:00",
-        "startTime_DayOfWeek": "FRIDAY",
-        "endTime": "2025-06-20T09:35:00",
-        "endTime_DayOfWeek": "FRIDAY",
-        "doctorId": 4,
-        "booked": false,
-        "available": true
-    },
-    {
-        "id": 460,
-        "startTime": "2025-06-20T09:40:00",
-        "startTime_DayOfWeek": "FRIDAY",
-        "endTime": "2025-06-20T09:55:00",
-        "endTime_DayOfWeek": "FRIDAY",
-        "doctorId": 4,
-        "booked": false,
-        "available": true
-    },
-    {
-        "id": 461,
-        "startTime": "2025-06-20T10:00:00",
-        "startTime_DayOfWeek": "FRIDAY",
-        "endTime": "2025-06-20T10:15:00",
-        "endTime_DayOfWeek": "FRIDAY",
-        "doctorId": 4,
-        "booked": false,
-        "available": true
-    },
-    {
-        "id": 462,
-        "startTime": "2025-06-20T10:20:00",
-        "startTime_DayOfWeek": "FRIDAY",
-        "endTime": "2025-06-20T10:35:00",
-        "endTime_DayOfWeek": "FRIDAY",
-        "doctorId": 4,
-        "booked": false,
-        "available": true
-    },
-    {
-        "id": 463,
-        "startTime": "2025-06-20T10:40:00",
-        "startTime_DayOfWeek": "FRIDAY",
-        "endTime": "2025-06-20T10:55:00",
-        "endTime_DayOfWeek": "FRIDAY",
-        "doctorId": 4,
-        "booked": false,
-        "available": true
-    },
-    {
-        "id": 464,
-        "startTime": "2025-06-20T11:00:00",
-        "startTime_DayOfWeek": "FRIDAY",
-        "endTime": "2025-06-20T11:15:00",
-        "endTime_DayOfWeek": "FRIDAY",
-        "doctorId": 4,
-        "booked": false,
-        "available": true
-    },
-    {
-        "id": 465,
-        "startTime": "2025-06-20T11:20:00",
-        "startTime_DayOfWeek": "FRIDAY",
-        "endTime": "2025-06-20T11:35:00",
-        "endTime_DayOfWeek": "FRIDAY",
-        "doctorId": 4,
-        "booked": false,
-        "available": true
-    },
-    {
-        "id": 466,
-        "startTime": "2025-06-20T11:40:00",
-        "startTime_DayOfWeek": "FRIDAY",
-        "endTime": "2025-06-20T11:55:00",
-        "endTime_DayOfWeek": "FRIDAY",
-        "doctorId": 4,
-        "booked": false,
-        "available": true
-    },
-    {
-        "id": 467,
-        "startTime": "2025-06-20T12:00:00",
-        "startTime_DayOfWeek": "FRIDAY",
-        "endTime": "2025-06-20T12:15:00",
-        "endTime_DayOfWeek": "FRIDAY",
-        "doctorId": 4,
-        "booked": false,
-        "available": true
-    },
-    {
-        "id": 468,
-        "startTime": "2025-06-20T12:20:00",
-        "startTime_DayOfWeek": "FRIDAY",
-        "endTime": "2025-06-20T12:35:00",
-        "endTime_DayOfWeek": "FRIDAY",
-        "doctorId": 4,
-        "booked": false,
-        "available": true
-    },
-    {
-        "id": 469,
-        "startTime": "2025-06-20T12:40:00",
-        "startTime_DayOfWeek": "FRIDAY",
-        "endTime": "2025-06-20T12:55:00",
-        "endTime_DayOfWeek": "FRIDAY",
-        "doctorId": 4,
-        "booked": false,
-        "available": true
-    },
-    {
-        "id": 470,
-        "startTime": "2025-06-20T13:00:00",
-        "startTime_DayOfWeek": "FRIDAY",
-        "endTime": "2025-06-20T13:15:00",
-        "endTime_DayOfWeek": "FRIDAY",
-        "doctorId": 4,
-        "booked": false,
-        "available": true
-    },
-    {
-        "id": 471,
-        "startTime": "2025-06-20T13:20:00",
-        "startTime_DayOfWeek": "FRIDAY",
-        "endTime": "2025-06-20T13:35:00",
-        "endTime_DayOfWeek": "FRIDAY",
-        "doctorId": 4,
-        "booked": false,
-        "available": true
-    },
-    {
-        "id": 472,
-        "startTime": "2025-06-20T13:40:00",
-        "startTime_DayOfWeek": "FRIDAY",
-        "endTime": "2025-06-20T13:55:00",
-        "endTime_DayOfWeek": "FRIDAY",
-        "doctorId": 4,
-        "booked": false,
-        "available": true
-    },
-    {
-        "id": 473,
-        "startTime": "2025-06-20T14:00:00",
-        "startTime_DayOfWeek": "FRIDAY",
-        "endTime": "2025-06-20T14:15:00",
-        "endTime_DayOfWeek": "FRIDAY",
-        "doctorId": 4,
-        "booked": false,
-        "available": true
-    },
-    {
-        "id": 474,
-        "startTime": "2025-06-20T14:20:00",
-        "startTime_DayOfWeek": "FRIDAY",
-        "endTime": "2025-06-20T14:35:00",
-        "endTime_DayOfWeek": "FRIDAY",
-        "doctorId": 4,
-        "booked": false,
-        "available": true
-    },
-    {
-        "id": 475,
-        "startTime": "2025-06-20T14:40:00",
-        "startTime_DayOfWeek": "FRIDAY",
-        "endTime": "2025-06-20T14:55:00",
-        "endTime_DayOfWeek": "FRIDAY",
-        "doctorId": 4,
-        "booked": false,
-        "available": true
-    },
-    {
-        "id": 476,
-        "startTime": "2025-06-20T15:00:00",
-        "startTime_DayOfWeek": "FRIDAY",
-        "endTime": "2025-06-20T15:15:00",
-        "endTime_DayOfWeek": "FRIDAY",
-        "doctorId": 4,
-        "booked": false,
-        "available": true
-    },
-    {
-        "id": 477,
-        "startTime": "2025-06-20T15:20:00",
-        "startTime_DayOfWeek": "FRIDAY",
-        "endTime": "2025-06-20T15:35:00",
-        "endTime_DayOfWeek": "FRIDAY",
-        "doctorId": 4,
-        "booked": false,
-        "available": true
-    },
-    {
-        "id": 478,
-        "startTime": "2025-06-20T15:40:00",
-        "startTime_DayOfWeek": "FRIDAY",
-        "endTime": "2025-06-20T15:55:00",
-        "endTime_DayOfWeek": "FRIDAY",
-        "doctorId": 4,
-        "booked": false,
-        "available": true
-    },
-    {
-        "id": 479,
-        "startTime": "2025-06-20T16:00:00",
-        "startTime_DayOfWeek": "FRIDAY",
-        "endTime": "2025-06-20T16:15:00",
-        "endTime_DayOfWeek": "FRIDAY",
-        "doctorId": 4,
-        "booked": false,
-        "available": true
-    },
-    {
-        "id": 480,
-        "startTime": "2025-06-20T16:20:00",
-        "startTime_DayOfWeek": "FRIDAY",
-        "endTime": "2025-06-20T16:35:00",
-        "endTime_DayOfWeek": "FRIDAY",
-        "doctorId": 4,
-        "booked": false,
-        "available": true
-    },
-    {
-        "id": 481,
-        "startTime": "2025-06-20T16:40:00",
-        "startTime_DayOfWeek": "FRIDAY",
-        "endTime": "2025-06-20T16:55:00",
-        "endTime_DayOfWeek": "FRIDAY",
-        "doctorId": 4,
-        "booked": false,
-        "available": true
-    }
-]
-```
-
-# Make Appointment
+**POST**
 
 ```shell
 curl --location 'http://localhost:8080/appointments/book' \
 --header 'Content-Type: application/json' \
---header 'Cookie: JSESSIONID=E845980308D6A810927092C78AC4A036' \
 --data '{
 "doctorId": 4,
-"slotId": 689,
+"slotId": 22,
 "username": "testpatient"
 }'
 ```
 
-*Result :Successfull*
+*Result :Successful*
 ```json
 {
     "message": "Appointment booked",
