@@ -59,7 +59,8 @@ dataSource:
   driverClassName: com.mysql.cj.jdbc.Driver
   dialect: org.hibernate.dialect.MySQL8Dialect
   username: root
-  password: Pop2120Eye
+  password: Greenline2021
+  password_org: Pop2120Eye
   url: jdbc:mysql://localhost:3306/doctor_booking_v1?useSSL=false&serverTimezone=UTC
   dbCreate: update 
 
