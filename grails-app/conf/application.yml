@@ -59,8 +59,9 @@ dataSource:
   driverClassName: com.mysql.cj.jdbc.Driver
   dialect: org.hibernate.dialect.MySQL8Dialect
   username: root
-  password: Greenline2021
-  password_org: Pop2120Eye
+  password: Pop2120Eye
+  password_macbookair: Greenline2021
+  password_macmini: Pop2120Eye
   url: jdbc:mysql://localhost:3306/doctor_booking_v1?useSSL=false&serverTimezone=UTC
   dbCreate: update 
 
@@ -74,16 +75,3 @@ environments:
   production:
     dataSource:
       dbCreate: update
-
-#   url: jdbc:h2:mem:devDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
-#   driverClassName: org.h2.Driver
-#   username: sa
-#   password: ''
-#   pooled: true
-#   jmxExport: true
-#   dbCreate: update
-# hibernate:
-#   cache:
-#     queries: false
-#     use_second_level_cache: false
-#     use_query_cache: false

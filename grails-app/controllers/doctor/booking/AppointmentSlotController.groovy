@@ -20,9 +20,10 @@ class AppointmentSlotController {
         }
     }
 
-    def showAll() {
+    def showAllSlots() {
         def doctorId = params.doctorId?.toLong()
         def dateStr = params.date
+        println("Controller --> showAllSlots()")
         def result = appointmentSlotService.showAllSlots(doctorId, dateStr)
         if (result.status != 200) {
             render status: result.status, [error: result.error] as JSON

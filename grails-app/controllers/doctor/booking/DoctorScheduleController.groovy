@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter
 class DoctorScheduleController extends RestfulController<DoctorSchedule> {
 
     static responseFormats = ['json']
-    static allowedMethods = [save: "POST", listByDoctorId: "GET"]
+    static allowedMethods = [save: "POST", update : "PUT", listByDoctorId: "GET"]
 
     DoctorScheduleService doctorScheduleService
 
@@ -22,6 +22,15 @@ class DoctorScheduleController extends RestfulController<DoctorSchedule> {
             render result as JSON
         } else {
             render status: result.status ?: 400, result as JSON
+        }
+    }
+    def update(Long id) {
+        println("doctor-schedule-update -->${id}")
+        def result = doctorScheduleService.updateScheduleById(id, request.JSON)
+        if (result.status == 200) {
+            render result.schedule as JSON
+        } else {
+            render status: result.status, result as JSON
         }
     }
 

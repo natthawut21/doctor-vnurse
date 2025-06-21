@@ -8,14 +8,13 @@ class UrlMappings {
 
 
         "/schedules"(resources: 'doctorSchedule')
-        //get "/schedules/doctor"(controller: "doctorSchedule", action: "listByDoctorId")
         get "/schedules/doctor/$id"(controller: "doctorSchedule", action: "listByDoctorId")
         delete "/schedules/delete"(controller: "doctorSchedule", action: "deleteByDoctorAndSchedule")
 
 
         
         "/slots/generate"(controller: 'appointmentSlot', action: 'generate')
-        get "/slots/show"(controller: 'appointmentSlot', action: 'showAll')
+        get "/slots/show"(controller: 'appointmentSlot', action: 'showAllSlots')
         get "/slots/available"(controller: "appointmentSlot", action: "available")
 
 
