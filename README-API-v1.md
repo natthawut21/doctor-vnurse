@@ -507,7 +507,7 @@ curl --location --request PUT 'http://localhost:8080/schedules/20' \
 }
 ```
 
-# 9. Get Appointment Slot
+# 9. Get Appointment Slot (ยกเลิกใช้ Go)
 **GET**
 
 ```sh
@@ -612,7 +612,7 @@ curl --location 'http://localhost:8080/slots/show?doctorId=14&date=2025-06-24'
 ```
 
 
-# 10. Make Appointment
+# 10. Make Appointment (ยกเลิกใช้ Go)
 
 **POST**
 
