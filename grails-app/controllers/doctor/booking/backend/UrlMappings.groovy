@@ -12,14 +12,14 @@ class UrlMappings {
         delete "/schedules/delete"(controller: "doctorSchedule", action: "deleteByDoctorAndSchedule")
 
 
-        
-        "/slots/generate"(controller: 'appointmentSlot', action: 'generate')
-        get "/slots/show"(controller: 'appointmentSlot', action: 'showAllSlots')
-        get "/slots/available"(controller: "appointmentSlot", action: "available")
+        /*ยกเลิก ไปใช้ GO*/
+        // "/slots/generate"(controller: 'appointmentSlot', action: 'generate')
+        // get "/slots/show"(controller: 'appointmentSlot', action: 'showAllSlots')
+        // get "/slots/available"(controller: "appointmentSlot", action: "available")
 
-
-        "/appointments"(resources: 'appointment')
-        post "/appointments/book"(controller: 'appointment', action: 'book')
+        /*ยกเลิก ไปใช้ GO*/
+        //"/appointments"(resources: 'appointment')
+        //post "/appointments/book"(controller: 'appointment', action: 'book')
 
         post "/auth/register"(controller: 'auth', action: 'register')
         post "/auth/login"(controller: 'auth', action: 'login')
